@@ -3,8 +3,8 @@ import Greeting from "./Greeting";
 import { UserType } from "./HW3";
 
 type GreetingContainerPropsType = {
-  users: UserType[]; // need to fix any
-  addUserCallback: (name: string) => void; // need to fix any
+  users: UserType[];
+  addUserCallback: (name: string) => void;
 };
 
 export const pureAddUser = (
@@ -34,7 +34,7 @@ export const pureOnEnter = (
   addUser: () => void
 ) => {
   // если нажата кнопка Enter - добавить
-  if (e.key === "Enter" && e.currentTarget.value.trim()) {
+  if (e.key === "Enter") {
     addUser();
   }
 };
@@ -48,12 +48,10 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
   addUserCallback,
 }) => {
   // деструктуризация пропсов
-  const [name, setName] = useState<string>(""); // need to fix any
-  const [error, setError] = useState<string>(""); // need to fix any
+  const [name, setName] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    // need to fix any
-    //setName("some name"); // need to fix
     setName(e.currentTarget.value);
 
     error && setError("");
@@ -69,9 +67,6 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
   const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     pureOnEnter(e, addUser);
   };
-
-  // const totalUsers = 0; // need to fix
-  //const lastUserName = "some name"; // need to fix
 
   const totalUsers = users.length;
   const lastUserName = users.length > 0 ? users[users.length - 1].name : "";
